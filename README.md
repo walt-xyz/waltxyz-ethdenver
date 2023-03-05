@@ -1,39 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
-First, run the development server:
-
+Install dependencies
 ```bash
-npm run dev
+npm install
 # or
-yarn dev
+yarn install
 # or
-pnpm dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the project
+```bash
+npm run nextDev
+# or
+yarn nextDev
+# or
+pnpm nextDev
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Overview
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### web3 auth flows by walt.id
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Auth via on-chain + off-chain identity
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+[Demo Deployment](https://waltxyz-ethdenver.vercel.app/)
 
-## Learn More
+#### GOAL
+Demonstrate user onboarding and authentication that leverages on-chain and off-chain identity.
 
-To learn more about Next.js, take a look at the following resources:
+#### DEMO DESCRIPTION
+A user interacts with 2 apps in separate flows:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+User onboards to app "Franz"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Sign in with ETH [1]
+2. Data is collected (via form)
+3. Data is signed/transformed into a Verifiable Credential, "VC" [2]
+4. "VC" is stored on Ceramic [3]
+5. NFT (membership) is minted to user's wallet [4]
 
-## Deploy on Vercel
+User authenticates to App "Sissi"
+6. Sign in with ETH
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+7. On-chain data (ENS domain) is fetched
+8. Off-chain data (VC) is shared via Ceramic
+9. On-chain data (membership NFT) is verified + unlocks voucher
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# waltxyz-ethdenver
+---
+
+
+[1] SIWE: EIP-4361
+[2] VC: W3C DID (did:key) + W3C VC (JWT)
+[3] Ceramic: ComposeDB
+[4] NFT: ERC-721 on Mumbai
+
+
