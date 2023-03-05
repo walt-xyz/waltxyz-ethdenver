@@ -9,6 +9,7 @@ import { useCeramicContext } from '../../../context';
 import { authenticateCeramic } from '../../../utils';
 import Voucher from './Voucher/Voucher';
 import ConfirmationModal from './ConfirmationModal/ConfirmationModal';
+import { useAccount, useEnsName } from 'wagmi';
 
 type ModalProps = {
   show: boolean;
@@ -43,6 +44,14 @@ export default function LoginModal({
     'Voucher',
     'Confirmation',
   ]);
+  const { address } = useAccount();
+  const {
+    data: ensName,
+    isError,
+    isLoading,
+  } = useEnsName({
+    address,
+  });
 
   const [state, dispatch] = useReducer(stateReducer, {}, () => ({
     name: '',
@@ -103,6 +112,7 @@ export default function LoginModal({
     case 'AskForData':
       body = (
         <AskForData
+          ensName={ensName}
           loading={loadingProfile}
           onSubmit={fetchDataFromCeramic}
           onSkip={next}
