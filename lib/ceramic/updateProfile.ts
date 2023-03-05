@@ -7,7 +7,7 @@ export type Clients = {
   composeClient: ComposeClient;
 };
 
-export const updateProfile = async (clients: Clients, data: ProfileData) => {
+export const updateProfile = async (clients: Clients, data: ProfileData & {vc: string}) => {
   const { ceramic, composeClient } = clients;
 
   if (ceramic.did !== undefined) {
@@ -20,6 +20,7 @@ export const updateProfile = async (clients: Clients, data: ProfileData) => {
                 twitter_handle: "${data.twitter_handle}"
                 discord_handle: "${data.discord_handle}"
                 telegram_handle: "${data.telegram_handle}"
+                vc: "${data.vc}"
            
             }
           }) 
@@ -31,6 +32,7 @@ export const updateProfile = async (clients: Clients, data: ProfileData) => {
               twitter_handle
               discord_handle
               telegram_handle
+              vc
             }
           }
         }

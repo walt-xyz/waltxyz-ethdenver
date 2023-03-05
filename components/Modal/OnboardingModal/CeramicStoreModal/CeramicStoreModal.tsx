@@ -6,6 +6,7 @@ import { updateProfile } from '../../../../lib/ceramic/updateProfile';
 import { authenticateCeramic } from '../../../../utils';
 import { useCeramicContext } from '../../../../context';
 import { ProfileData } from '../OnboardingModal';
+import {generateVC} from "../../../../lib/vc/generateVC";
 
 export type Check = {
   name: string;
@@ -37,7 +38,10 @@ export default function CeramicStoreModal({
   const handleStoreOnCeramic = async () => {
     setStoringOnCeramic(true);
     await handelCeramicAuth();
-    await updateProfile(clients, profileData);
+    const did = ceramic.did ? ceramic.did.id : '';
+    const vc = await generateVC(did, profileData);
+    const data = {...profileData, vc };
+    await updateProfile(clients, data);
     next();
     setStoringOnCeramic(false);
   };

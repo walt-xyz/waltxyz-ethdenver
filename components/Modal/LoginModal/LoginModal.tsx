@@ -80,7 +80,6 @@ export default function LoginModal({
       const profile = await getProfile(clients);
       delete profile.id;
       dispatch(profile);
-      console.dir(profile);
     } catch (e) {
       console.error(e);
     } finally {
