@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useStages } from '../../../../lib/useStages';
 import Start from './Start';
-import {useAccount} from "wagmi";
+import { useAccount } from 'wagmi';
 
 const MINT_BUTTON_TEXT = 'Mint NFT';
 
@@ -43,20 +43,20 @@ export default function MintNFTModal({
     setMintButtonText(`Minting`);
     try {
       await axios.post(
-        ' https://nftkit.walt-test.cloud/v2/nftkit/nft/chain/MUMBAI/contract/0x862545e3912591b11f37b3a6f48d425bee605094/token/mint',
+        ' https://nftkit.walt-test.cloud/v2/nftkit/nft/chain/MUMBAI/contract/0x7Bf34C715e9A7ADEc6c4fa1CFEE4120E2808fD8c/token/mint',
         {
           metadataUri: '',
           metadata: {
-            description: 'Ceramic Profile Update',
-            name: 'Ceramic Profile',
+            description: 'Walt Membership',
+            name: 'Walt Membership',
             image:
               'ipfs://bafkreicl5qtcwcckkblm2qdut4bwyu3dksq36wipfrzui5tnbdydzpuhcq',
             image_data: '',
             external_url: '',
             attributes: [
               {
-                trait_type: 'date',
-                value: '',
+                trait_type: 'ceramic_hackathon_attendee',
+                value: true,
               },
             ],
           },
