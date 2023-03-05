@@ -4,6 +4,7 @@ import OnboardingModal from '../components/Modal/OnboardingModal/OnboardingModal
 import { useState } from 'react';
 import WalletConnectModal from '../components/Modal/WalletConnectModal/WalletConnectModal';
 import Button from '../components/Button';
+import Head from 'next/head';
 
 export default function Onboarding() {
   const clients = useCeramicContext();
@@ -22,23 +23,28 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-center">
-      <h1 className="text-4xl">Franz App</h1>
-      <div className="mt-5">
-        <Button onClick={() => setShowWalletConnect((s) => !s)}>
-          Start Onboarding
-        </Button>
+    <>
+      <Head>
+        <title>Franz App</title>
+      </Head>
+      <div className="h-screen w-full flex flex-col items-center justify-center">
+        <h1 className="text-4xl">Franz App</h1>
+        <div className="mt-5">
+          <Button onClick={() => setShowWalletConnect((s) => !s)}>
+            Start Onboarding
+          </Button>
+        </div>
+        <OnboardingModal
+          show={show}
+          onSubmit={() => {}}
+          onClose={() => setShow(false)}
+        />
+        <WalletConnectModal
+          show={showWalletConnect}
+          onClose={() => setShowWalletConnect((s) => !s)}
+          onSuccess={handleWalletConnectSuccess}
+        />
       </div>
-      <OnboardingModal
-        show={show}
-        onSubmit={() => {}}
-        onClose={() => setShow(false)}
-      />
-      <WalletConnectModal
-        show={showWalletConnect}
-        onClose={() => setShowWalletConnect((s) => !s)}
-        onSuccess={handleWalletConnectSuccess}
-      />
-    </div>
+    </>
   );
 }

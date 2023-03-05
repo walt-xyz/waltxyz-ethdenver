@@ -4,6 +4,7 @@ import { authenticateCeramic } from '../utils';
 import Button from '../components/Button';
 import WalletConnectModal from '../components/Modal/WalletConnectModal/WalletConnectModal';
 import LoginModal from '../components/Modal/LoginModal/LoginModal';
+import Head from 'next/head';
 
 export default function Login() {
   const clients = useCeramicContext();
@@ -22,21 +23,26 @@ export default function Login() {
   };
 
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-center">
-      <h1 className="text-4xl">Sissi App</h1>
-      <div className="mt-5">
-        <Button onClick={() => setShowWalletConnect((s) => !s)}>Login</Button>
+    <>
+      <Head>
+        <title>Sissi App</title>
+      </Head>
+      <div className="h-screen w-full flex flex-col items-center justify-center">
+        <h1 className="text-4xl">Sissi App</h1>
+        <div className="mt-5">
+          <Button onClick={() => setShowWalletConnect((s) => !s)}>Login</Button>
+        </div>
+        <LoginModal
+          show={show}
+          onSubmit={() => {}}
+          onClose={() => setShow(false)}
+        />
+        <WalletConnectModal
+          show={showWalletConnect}
+          onClose={() => setShowWalletConnect((s) => !s)}
+          onSuccess={handleWalletConnectSuccess}
+        />
       </div>
-      <LoginModal
-        show={show}
-        onSubmit={() => {}}
-        onClose={() => setShow(false)}
-      />
-      <WalletConnectModal
-        show={showWalletConnect}
-        onClose={() => setShowWalletConnect((s) => !s)}
-        onSuccess={handleWalletConnectSuccess}
-      />
-    </div>
+    </>
   );
 }
