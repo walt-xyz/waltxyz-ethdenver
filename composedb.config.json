@@ -1,0 +1,21 @@
+{
+  "anchor": {},
+  "http-api": {
+    "cors-allowed-origins": [".*"],
+    "admin-dids": ["did:key:z6MkpDGU5tu6D29yP6T2UG5g1VFRQ4aBRG4w3L1RqXQYgPHA"]
+  },
+  "ipfs": { "mode": "bundled" },
+  "logger": { "log-level": 2, "log-to-files": false },
+  "metrics": { "metrics-exporter-enabled": false, "metrics-port": 9090 },
+  "network": { "name": "testnet-clay" },
+  "node": {},
+  "state-store": {
+    "mode": "fs",
+    "local-directory": ".ceramic/statestore/"
+  },
+  "indexing": {
+    "db": "sqlite:///Users/taminobaumann/.ceramic/indexing.sqlite",
+    "allow-queries-before-historical-sync": true,
+    "models": []
+  }
+}
