@@ -38,7 +38,8 @@ query  {
 }      `);
       console.log('thisprofile', profile);
 
-      setProfile(profile?.data?.viewer?.userProfile);
+      // @ts-ignore
+        setProfile(profile?.data?.viewer?.userProfile);
     }
   };
 

@@ -3,9 +3,10 @@ import { EthereumWebAuth, getAccountId } from "@didtools/pkh-ethereum";
 import type { CeramicApi } from "@ceramicnetwork/common"
 import type { ComposeClient } from "@composedb/client";
 
-// If you are relying on an injected provider this must be here otherwise you will have a type error. 
+// If you are relying on an injected provider this must be here otherwise you will have a type error.
 declare global {
   interface Window {
+    // @ts-ignore
     ethereum: any;
   }
 }
