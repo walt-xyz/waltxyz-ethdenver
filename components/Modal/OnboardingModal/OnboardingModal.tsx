@@ -11,6 +11,7 @@ import CeramicStoreModal, {
 } from './CeramicStoreModal/CeramicStoreModal';
 import MintNFTModal from './MintNFTModal/MintNFTModal';
 import ConfirmationModal from './ConfirmationModal/ConfirmationModal';
+import {useAccount} from "wagmi";
 
 type ModalProps = {
   show: boolean;
@@ -57,6 +58,8 @@ export default function OnboardingModal({
     discord_handle: '',
     telegram_handle: '',
   }));
+
+  const { address } = useAccount();
 
   let checks: Check[] = [];
   Object.entries(state).forEach(([key, value]) => {
@@ -140,7 +143,7 @@ export default function OnboardingModal({
         <MintNFTModal
           onMintFinished={handleMintFinished}
           onSkip={next}
-          address={'h'}
+          address={address!}
           isOwner={false}
         />
       );

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useStages } from '../../../../lib/useStages';
 import Start from './Start';
+import {useAccount} from "wagmi";
 
 const MINT_BUTTON_TEXT = 'Mint NFT';
 
@@ -59,7 +60,7 @@ export default function MintNFTModal({
               },
             ],
           },
-          recipientAddress: '0xb0B62e4E7194d3639112730a87e4eA00008aF7a4',
+          recipientAddress: address,
           metadataStorageType: 'OFF_CHAIN',
         }
       );
